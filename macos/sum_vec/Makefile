@@ -1,5 +1,5 @@
 .PHONY: all
-all: addnums
+all: addnums hsAddNums
 
 %.o: %.asm
 	nasm -fmacho64 $(<) -o $(@)
@@ -10,7 +10,15 @@ all: addnums
 addnums: addnums.o sumvec.o
 	gcc $(^) -o $(@)
 
+%.o: %.hs
+	ghc -c $(<) -o $(@)
+
+hsAddNums: hsAddNums.o sumvec.o
+	ghc $(^) -o $(@)
+
 .PHONY: clean
 clean:
 	-rm -f addnums
+	-rm -f hsAddNums
 	-rm -f *.o
+	-rm -f *.hi
