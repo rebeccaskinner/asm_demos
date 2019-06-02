@@ -3,5 +3,5 @@
 with pkgs;
 
 mkShell {
-buildInputs = [ gcc nasm binutils ];
+buildInputs = [ gcc nasm binutils ghc ];
 }
