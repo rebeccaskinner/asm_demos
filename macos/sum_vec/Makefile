@@ -7,8 +7,8 @@ all: addnums
 %.o: %.c
 	gcc -c $(<) -o $(@)
 
-addnums: addnums.o sumvec.asm
-	ld -demangle -lto_library -dynamic -arch x86_64 -macosx_version_min 10.14.0 -lc $(^) -o $(@)
+addnums: addnums.o sumvec.o
+	gcc $(^) -o $(@)
 
 .PHONY: clean
 clean:
